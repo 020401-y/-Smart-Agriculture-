@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>普惠型农田智慧服务检测平台 - 管理后台</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="login-page" id="login-page">
+        <div class="login-container">
+            <div class="login-left">
+                <div class="logo">
+                    <span class="logo-icon">🌾</span>
+                    <h1>普惠型农田智慧服务检测平台</h1>
+                </div>
+                <p class="login-slogan">数字赋能农业，科技助力增收</p>
+                <div class="login-features">
+                    <div class="feature-item">
+                        <span class="feature-icon">📡</span>
+                        <span>物联网实时监测</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">📝</span>
+                        <span>智能农事记录</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🔍</span>
+                        <span>农产品溯源管理</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">📊</span>
+                        <span>数据统计分析</span>
+                    </div>
+                </div>
+            </div>
+            <div class="login-right">
+                <h2>管理后台登录</h2>
+                <p class="login-subtitle">请使用管理员账号登录</p>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label>用户名</label>
+                        <input type="text" id="login-username" placeholder="请输入用户名" value="admin">
+                    </div>
+                    <div class="form-group">
+                        <label>密码</label>
+                        <input type="password" id="login-password" placeholder="请输入密码" value="admin123">
+                    </div>
+                    <button type="submit" class="login-btn">登 录</button>
+                </form>
+                <p class="login-tip">演示账号：admin / admin123</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="admin-layout" id="admin-layout" style="display:none;">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <span class="logo-icon">🌾</span>
+                <span class="logo-text">农智云平台</span>
+            </div>
+            <nav class="sidebar-menu">
+                <div class="menu-item active" data-menu="dashboard">
+                    <span class="menu-icon">📊</span>
+                    <span class="menu-text">数据概览</span>
+                </div>
+                <div class="menu-item" data-menu="users">
+                    <span class="menu-icon">👥</span>
+                    <span class="menu-text">用户管理</span>
+                </div>
+                <div class="menu-item" data-menu="farms">
+                    <span class="menu-icon">🌾</span>
+                    <span class="menu-text">农田管理</span>
+                </div>
+                <div class="menu-item" data-menu="sensors">
+                    <span class="menu-icon">📡</span>
+                    <span class="menu-text">设备管理</span>
+                </div>
+                <div class="menu-item" data-menu="records">
+                    <span class="menu-icon">📝</span>
+                    <span class="menu-text">农事记录</span>
+                </div>
+                <div class="menu-item" data-menu="trace">
+                    <span class="menu-icon">🔍</span>
+                    <span class="menu-text">溯源管理</span>
+                </div>
+                <div class="menu-item" data-menu="advices">
+                    <span class="menu-icon">💡</span>
+                    <span class="menu-text">种植建议</span>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-title" id="page-title">数据概览</div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <span class="user-avatar">👨‍💼</span>
+                        <span class="user-name" id="admin-name">管理员</span>
+                        <span class="logout-btn" onclick="logout()">退出</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <div class="page-content" id="page-dashboard">
+                    <div class="stat-cards">
+                        <div class="stat-card">
+                            <div class="stat-card-icon blue">👥</div>
+                            <div class="stat-card-info">
+                                <div class="stat-card-value" id="stat-user-count">0</div>
+                                <div class="stat-card-label">注册用户</div>
+                            </div>
+                            <div class="stat-card-trend up">↑ 12%</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon green">🌾</div>
+                            <div class="stat-card-info">
+                                <div class="stat-card-value" id="stat-farm-count">0</div>
+                                <div class="stat-card-label">农田总数</div>
+                            </div>
+                            <div class="stat-card-trend up">↑ 8%</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon orange">📡</div>
+                            <div class="stat-card-info">
+                                <div class="stat-card-value" id="stat-sensor-count">0</div>
+                                <div class="stat-card-label">监测设备</div>
+                            </div>
+                            <div class="stat-card-trend up">↑ 15%</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon purple">📝</div>
+                            <div class="stat-card-info">
+                                <div class="stat-card-value" id="stat-record-count">0</div>
+                                <div class="stat-card-label">农事记录</div>
+                            </div>
+                            <div class="stat-card-trend up">↑ 20%</div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-grid">
+                        <div class="chart-panel">
+                            <div class="panel-header">
+                                <h3>环境数据趋势</h3>
+                                <select class="period-select">
+                                    <option value="7">近7天</option>
+                                    <option value="30">近30天</option>
+                                </select>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="envTrendChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="chart-panel">
+                            <div class="panel-header">
+                                <h3>农事类型分布</h3>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="recordTypeChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-grid">
+                        <div class="data-panel">
+                            <div class="panel-header">
+                                <h3>最新注册用户</h3>
+                                <span class="more-link">查看全部 ›</span>
+                            </div>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>用户</th>
+                                        <th>手机号</th>
+                                        <th>注册时间</th>
+                                        <th>状态</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recent-users-body">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="data-panel">
+                            <div class="panel-header">
+                                <h3>最新农田</h3>
+                                <span class="more-link">查看全部 ›</span>
+                            </div>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>农田名称</th>
+                                        <th>作物</th>
+                                        <th>面积</th>
+                                        <th>创建时间</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recent-farms-body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-content" id="page-users" style="display:none;">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3>用户管理</h3>
+                            <div class="panel-actions">
+                                <input type="text" class="search-input" placeholder="搜索用户名/手机号" id="user-search">
+                                <button class="btn btn-primary">+ 新增用户</button>
+                            </div>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>用户名</th>
+                                    <th>姓名</th>
+                                    <th>手机号</th>
+                                    <th>地址</th>
+                                    <th>VIP状态</th>
+                                    <th>注册时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="page-content" id="page-farms" style="display:none;">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3>农田管理</h3>
+                            <div class="panel-actions">
+                                <input type="text" class="search-input" placeholder="搜索农田名称" id="farm-search">
+                            </div>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>农田名称</th>
+                                    <th>所属用户</th>
+                                    <th>位置</th>
+                                    <th>作物</th>
+                                    <th>面积(亩)</th>
+                                    <th>设备数</th>
+                                    <th>创建时间</th>
+                                </tr>
+                            </thead>
+                            <tbody id="farms-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="page-content" id="page-sensors" style="display:none;">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3>设备管理</h3>
+                            <div class="panel-actions">
+                                <select class="filter-select" id="sensor-status-filter">
+                                    <option value="">全部状态</option>
+                                    <option value="online">在线</option>
+                                    <option value="offline">离线</option>
+                                </select>
+                            </div>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>设备编号</th>
+                                    <th>设备名称</th>
+                                    <th>所属农田</th>
+                                    <th>类型</th>
+                                    <th>状态</th>
+                                    <th>电量</th>
+                                    <th>最后上报</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sensors-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="page-content" id="page-records" style="display:none;">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3>农事记录</h3>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>类型</th>
+                                    <th>标题</th>
+                                    <th>农田</th>
+                                    <th>操作人</th>
+                                    <th>日期</th>
+                                    <th>创建时间</th>
+                                </tr>
+                            </thead>
+                            <tbody id="all-records-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="page-content" id="page-trace" style="display:none;">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3>溯源管理</h3>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>溯源码</th>
+                                    <th>产品名称</th>
+                                    <th>批次号</th>
+                                    <th>所属农田</th>
+                                    <th>采收日期</th>
+                                    <th>扫码次数</th>
+                                    <th>状态</th>
+                                </tr>
+                            </thead>
+                            <tbody id="trace-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="page-content" id="page-advices" style="display:none;">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3>种植建议管理</h3>
+                            <div class="panel-actions">
+                                <button class="btn btn-primary">+ 新增建议</button>
+                            </div>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>作物类型</th>
+                                    <th>生长阶段</th>
+                                    <th>类型</th>
+                                    <th>标题</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="advices-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
